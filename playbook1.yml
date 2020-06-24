@@ -1,0 +1,8 @@
+---
+- name: Test Playbook
+  hosts: all
+  become: yes
+  tasks: 
+    - mame: Ping
+      ping:
+
