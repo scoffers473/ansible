@@ -24,4 +24,12 @@
       with_items:
         - "scoffers"
 
+    - name: Ensure Admins can SUDO without password
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%admins'
+        line: '%admins ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
 
