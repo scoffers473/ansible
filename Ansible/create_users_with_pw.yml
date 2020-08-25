@@ -5,7 +5,7 @@
   vars:
     pw: "$6$mysecretsalt$8OKI83Ge0RDRKdHRVm4lNBp4manv7Dlw4sVke3B8a4nJNBf9BgPzu11c9a/MjXZwD5xkJ5JcePl2UhikFs9tP."
   tasks: 
-    - name: Ctrate Group
+    - name: Cerate Group
       group:
         name: admins
         state: present
