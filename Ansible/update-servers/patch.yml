@@ -1,0 +1,27 @@
+---
+- name: Patch System
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+
+    - name: RHEL/CentOS Block
+      block:
+        - name: Show Fact
+          debug:
+            msg: Upgrading {{ ansible_distribution }}
+
+        - name: Perform Update of latest security package
+          yum:
+            state: latest
+            update_only: yes
+            security: yes
+          register: packages
+          notify: Reboot Server
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+    - name: Display unchanged message
+      debug:
+        msg:  "Server {{ ansible_hostname }} unhanged"
+      when: not packages.changed
+
