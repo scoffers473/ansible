@@ -4,6 +4,6 @@
     conenct_timeout: 5
     reboot_timeout: 600
     pre_reboot_delay: 0
-    post_reboot_delay:
+    post_reboot_delay: 5
     post_command: whoami
 
