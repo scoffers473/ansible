@@ -27,5 +27,5 @@
 
   handlers:
     - name: Import Handlers
-      import_tasks: handlers/main.hml
+      import_tasks: handlers/main.yml
 
