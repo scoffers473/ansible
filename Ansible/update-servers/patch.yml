@@ -15,7 +15,7 @@
           yum:
             name: "*"
             state: latest
-            update_latest: yes
+            update_only: yes
           register: packages
           notify: Reboot Server
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
