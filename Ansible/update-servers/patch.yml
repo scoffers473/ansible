@@ -11,9 +11,11 @@
           debug:
             msg: Upgrading {{ ansible_distribution }}
 
-        - name: Perform Update of latest security package
+        - name: Perform Update of latest package
           yum:
+            name: "*"
             state: latest
+            update_latest: yes
           register: packages
           notify: Reboot Server
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
@@ -22,4 +24,8 @@
       debug:
         msg:  "Server {{ ansible_hostname }} unhanged"
       when: not packages.changed
+
+  handlers:
+    - name: Import Handlers
+      import_tasks: handlers/main.hml
 
