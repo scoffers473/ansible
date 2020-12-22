@@ -14,7 +14,6 @@
         - name: Perform Update of latest security package
           yum:
             state: latest
-            update_only: yes
           register: packages
           notify: Reboot Server
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
