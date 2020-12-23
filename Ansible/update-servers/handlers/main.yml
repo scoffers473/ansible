@@ -1,6 +1,5 @@
 - name: Reboot Server
   reboot:
-    msg: "Rebooting Server"
     conenct_timeout: 5
     reboot_timeout: 600
     post_command: whoami
