@@ -6,7 +6,7 @@
   tasks:
     - name: Restart
       systemd:
-        name:  cron
+        name:  crond
         state: restarted
 
   handlers:
