@@ -8,6 +8,7 @@
       systemd:
         name:  crond
         state: restarted
+      notify: Reboot Server
 
   handlers:
     - name: Import Handlers
