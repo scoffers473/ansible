@@ -1,5 +1,5 @@
 ---
-- name: Test Playbook
+- name: Initial Playboot
   hosts: all
   become: yes
   vars:
@@ -32,4 +32,11 @@
         line: '%admins ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
 
+
+    - name: Install software
+      yum:
+        name: "{{ item }}"
+        staate: latest
+      with_items:
+        - "git"
 
