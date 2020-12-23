@@ -36,7 +36,7 @@
     - name: Install software
       yum:
         name: "{{ item }}"
-        staate: latest
-      with_items:
+        state: latest
+      loop:
         - "git"
 
