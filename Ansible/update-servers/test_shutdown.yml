@@ -1,0 +1,15 @@
+---
+- name: Patch System
+  hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Restart
+      systemd:
+        name:  cron
+        state: restarted
+
+  handlers:
+    - name: Import Handlers
+      import_tasks: handlers/main.yml
+
