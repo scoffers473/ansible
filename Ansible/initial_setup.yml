@@ -5,9 +5,9 @@
   vars:
     pw: "$6$mysecretsalt$8OKI83Ge0RDRKdHRVm4lNBp4manv7Dlw4sVke3B8a4nJNBf9BgPzu11c9a/MjXZwD5xkJ5JcePl2UhikFs9tP."
   tasks:
-    - name: Set motd
-      copy:
-        content: "Managed by Ansible\nSee Chris Scoffield"
+    - name: Copy motd
+      template:
+        source: motd.j2
         dest: /etc/motd
         owner: root
         group: root
@@ -54,8 +54,3 @@
         enabled: true
         state: started
 
-    - name: Add welcome message to motd
-      lineinfile:
-        insertbefore: BOF
-        line: Wellcome to {{ ansible_hostname }}
-        path: /etc/motd
