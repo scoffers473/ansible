@@ -54,4 +54,8 @@
         enabled: true
         state: started
 
-
+    - name: Add welcome message to motd
+      lineinfile:
+        insertbefore: BOF
+        line: Wellcome to {{ ansible_hostname }}
+        path: /etc/motd
