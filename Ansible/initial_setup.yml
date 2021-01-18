@@ -4,11 +4,14 @@
   become: yes
   vars:
     pw: "$6$mysecretsalt$8OKI83Ge0RDRKdHRVm4lNBp4manv7Dlw4sVke3B8a4nJNBf9BgPzu11c9a/MjXZwD5xkJ5JcePl2UhikFs9tP."
-  tasks: 
+  tasks:
     - name: Set motd
       copy:
         content: "Managed by Ansible\nSee Chris Scoffield"
         dest: /etc/motd
+        owner: root
+        group: root
+        mode: 0644
 
     - name: Cerate Group
       group:
@@ -41,7 +44,14 @@
     - name: Install software
       yum:
         name: "{{ item }}"
-        state: latest
+        state: present
       loop:
         - "git"
+
+    - name: Ensure sshd is started
+      service:
+        name: sshd
+        enabled: true
+        state: started
+
 
