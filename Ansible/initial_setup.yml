@@ -7,7 +7,7 @@
   tasks:
     - name: Copy motd
       template:
-        source: motd.j2
+        src: motd.j2
         dest: /etc/motd
         owner: root
         group: root
