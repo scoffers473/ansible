@@ -1,0 +1,7 @@
+- name: Add subscription
+  redhat_subscription:
+    state: present
+    username: "{{ rhuser }}"
+    password: "{{ rhpw }}"
+    auto_attach: yes  
+

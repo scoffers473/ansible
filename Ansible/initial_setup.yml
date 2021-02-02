@@ -4,6 +4,8 @@
   become: yes
   vars:
     pw: "$6$mysecretsalt$8OKI83Ge0RDRKdHRVm4lNBp4manv7Dlw4sVke3B8a4nJNBf9BgPzu11c9a/MjXZwD5xkJ5JcePl2UhikFs9tP."
+  vars_files:
+    - vault/redsubs.yml
   tasks:
     - name: Copy motd
       template:
@@ -54,3 +56,29 @@
         enabled: true
         state: started
 
+    - name: Copy cramfs modproble file if it is not present
+      copy:
+        src:  cramfs.conf
+        dest: /etc/modprobe.d/cramfs.conf
+        owner: root
+        group: root
+        mode: 0644
+        force: no
+      notify: copy_cramfs
+
+    - name: Loop over ansible mounts
+      debug:
+        msg: Mount is {{ item }}
+      loop:
+        - "{{ ansible_mounts }}"
+
+    - name: RHEL Block
+      block:
+        - name: Include RGEL Tasks
+          include_tasks: rhel.yml
+      when:  ansible_distribution  == 'RedHat'
+
+  handlers:
+    - name: copy_cramfs
+      command:
+       cmd: "/usr/sbin/rmmod cramfs"
