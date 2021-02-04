@@ -7,6 +7,10 @@
   vars_files:
     - vault/redsubs.yml
   tasks:
+    - name: Set timezone
+      timezone:
+        name: Europe/London
+
     - name: Copy motd
       template:
         src: motd.j2
